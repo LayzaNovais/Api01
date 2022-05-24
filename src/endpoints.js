@@ -1,4 +1,4 @@
- import { dobro, somar } from './services.js'
+ import { dobro, somar, media, temperatura, corPrimaria } from './services.js'
 
  import { Router } from 'express'
 
@@ -44,14 +44,32 @@
      }
  })
 
- server.post('/media' , (req, resp) => {
-     try {
-         const { valores: {n1, n2, n3}} = req.body;
+server.post('/somar', (req,resp ) => {
+    try {
+        const {a,b} = req.body;
 
-        let f = media (n1, n2, n3);
+        const x = somar(a, b);
 
          resp.send({
-             media: f
+            somar:x
+         })
+
+    }catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+
+ server.post('/media', (req, resp) => {
+     try {
+         const {n1, n2, n3} = req.body;
+
+         const a = media (n1, n2, n3);
+
+         resp.send({
+             media: a
          })
      } catch (err) {
         resp.status(404).send({
@@ -59,6 +77,63 @@
         })
     }
  })
+
+ server.get('/temperatura' , (req, resp) =>{
+    try {
+
+        const {a} = req.query;
+
+        const febre = temperatura(a);
+
+        resp.send({
+            temperatura: febre
+        })
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+server.get('/corPrimaria/:cor' , (req, resp) => {
+    try {
+
+        const cor = (req.params.cor);
+
+        const x= corPrimaria(cor);
+
+        resp.send({
+          Primaria: x
+        })
+
+    }catch (err){
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+server.post('/media', (req, resp) => {
+    try {
+        const {n1, n2, n3} = req.body;
+
+        const a = media (n1, n2, n3);
+
+        resp.send({
+            media: a
+        })
+    } catch (err) {
+       resp.status(404).send({
+           erro: err.message
+       })
+   }
+})
+
+
+
+server.post
+
+
 
 
  export default server;

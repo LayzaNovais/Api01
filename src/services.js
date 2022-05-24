@@ -10,9 +10,21 @@ export function dobro (a){
 }
 
 export function media (n1,n2,n3){
-    let a = (n1+n2+n3)/3;
+    let a = n1+n2+n3;
+    let b = a/3;
+    return b;
+}
+
+export function temperatura (temp) {
+    let a = temp >= 37.5;
     return a;
 }
+
+export function corPrimaria (cor) {
+    let a = cor == "amarelo" || cor == "vermelho" || cor== "azul";
+    return a;
+}
+
 
 
 
