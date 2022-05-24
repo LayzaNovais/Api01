@@ -25,6 +25,29 @@ export function corPrimaria (cor) {
     return a;
 }
 
+export function ingressoCinema (quatint, quatmeias, dia, nacion){
+    
+
+    let a= quatint * 28.5;
+    let b= quatmeias * (28.5/2);
+    let situacao= a + b;
+   
+
+    if (nacion == "brasileira" )
+       {
+         let total = quatint * 5 + quatmeias * 5;
+         situacao = total;
+       }
+            else if (dia == "quarta")
+            {
+                let valor=  a/2;
+                situacao = valor + b;
+                
+            }
+
+  
+  return situacao;
+}
 
 
 

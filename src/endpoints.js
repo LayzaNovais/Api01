@@ -1,4 +1,4 @@
- import { dobro, somar, media, temperatura, corPrimaria } from './services.js'
+ import { dobro, somar, media, temperatura, corPrimaria, ingressoCinema } from './services.js'
 
  import { Router } from 'express'
 
@@ -128,6 +128,22 @@ server.post('/media', (req, resp) => {
        })
    }
 })
+server.post('/ingressoCinema', (req, resp) => {
+    try {
+        const  {quatint, quatmeias, dia, nacion} = req.body;
+
+        const a = ingressoCinema (quatint, quatmeias, dia, nacion);
+
+        resp.send({
+            ingressoCinema: a
+        })
+    } catch (err) {
+       resp.status(404).send({
+           erro: err.message
+       })
+   }
+})
+
 
 
 
