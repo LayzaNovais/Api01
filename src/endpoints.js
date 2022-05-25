@@ -1,4 +1,4 @@
- import { dobro, somar, media, temperatura, corPrimaria, ingressoCinema } from './services.js'
+ import { dobro, somar, media, temperatura, corPrimaria, ingressoCinema, freqCaracter, maiorNumero } from './services.js'
 
  import { Router } from 'express'
 
@@ -113,29 +113,15 @@ server.get('/corPrimaria/:cor' , (req, resp) => {
     }
 })
 
-server.post('/media', (req, resp) => {
-    try {
-        const {n1, n2, n3} = req.body;
 
-        const a = media (n1, n2, n3);
+server.post('/dia2/ingressoCinema', (req, resp) => {
+    try {
+        const  {qtdInteira, qtdMeia, diadaSemana, nacionalidade} = req.body;
+
+        const total = ingressoCinema (qtdInteira, qtdMeia, diadaSemana, nacionalidade);
 
         resp.send({
-            media: a
-        })
-    } catch (err) {
-       resp.status(404).send({
-           erro: err.message
-       })
-   }
-})
-server.post('/ingressoCinema', (req, resp) => {
-    try {
-        const  {quatint, quatmeias, dia, nacion} = req.body;
-
-        const a = ingressoCinema (quatint, quatmeias, dia, nacion);
-
-        resp.send({
-            ingressoCinema: a
+            total: total
         })
     } catch (err) {
        resp.status(404).send({
@@ -144,6 +130,41 @@ server.post('/ingressoCinema', (req, resp) => {
    }
 })
 
+server.get('/dia2/frequecia/:texto/:caracter', (req,resp) => {
+    try{
+
+        const {texto,caracter} = req.params;
+
+        const letra = freqCaracter (texto, caracter);
+
+        resp.send({ 
+             frequencia: letra
+        })
+
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+server.post('/dia2/maiorNumero', (req,resp) => {
+    try{
+       const numeros = req.body;
+ 
+       const maior = maiorNumero(numeros);
+ 
+       resp.send({
+           maior: maior
+        })
+ 
+     } catch (err) {
+         resp.status(404).send({
+             erro: err.message
+         })
+     }
+ 
+ })
 
 
 
