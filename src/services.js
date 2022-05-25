@@ -25,28 +25,36 @@ export function corPrimaria (cor) {
     return a;
 }
 
-export function ingressoCinema (quatint, quatmeias, dia, nacion){
+export function ingressoCinema (qtdInteira, qtdMeia, diadaSemana, nacionalidade){
+
+    if (nacionalidade.toLowerCase() == "brasileira")
+        return(qtdInteira + qtdMeia) * 5;
+
+    else if (diadaSemana.toLowerCase() == 'quarta')
+        return (qtdInteira + qtdMeia) * 14.25;
     
+    else
+        return (qtdInteira * 28.5) + (qtdMeia * 14.25)
+}
 
-    let a= quatint * 28.5;
-    let b= quatmeias * (28.5/2);
-    let situacao= a + b;
-   
+export function freqCaracter (texto, caractere) {
+    let qtd = 0;
 
-    if (nacion == "brasileira" )
-       {
-         let total = quatint * 5 + quatmeias * 5;
-         situacao = total;
-       }
-            else if (dia == "quarta")
-            {
-                let valor=  a/2;
-                situacao = valor + b;
-                
-            }
+    for (let letra of texto) {
+        if (letra == caractere)
+        qtd++
+    }
+    return qtd;
+}
 
-  
-  return situacao;
+export function maiorNumero(numeros) {
+    let maior = Number.MIN_VALUE;
+
+    for (let item of numeros) {
+        if (item > maior)
+            maior = item;
+    }
+    return maior;
 }
 
 
